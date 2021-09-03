@@ -32,7 +32,7 @@ namespace InvenManager.Pages.Assets
         {
             if (!ModelState.IsValid)
             {
-                return Page();
+                return Page(); //back to the menu.
             }
 
             _context.AssetModel.Add(AssetModel);
