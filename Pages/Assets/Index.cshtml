@@ -1,0 +1,71 @@
+﻿@page
+@model InvenManager.Pages.Assets.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Asset List</h1>
+
+<p>
+    <a asp-page="Create">Create Asset</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AssetModel[0].Item)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AssetModel[0].Category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AssetModel[0].SerialNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AssetModel[0].AcquiredDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AssetModel[0].AllocatedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AssetModel[0].InStock)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AssetModel[0].Owner)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.AssetModel) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Item)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SerialNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AcquiredDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AllocatedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InStock)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Owner)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
