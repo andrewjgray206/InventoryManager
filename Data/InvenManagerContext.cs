@@ -15,5 +15,6 @@ namespace InvenManager.Data
         }
 
         public DbSet<InvenManager.wwwroot.Models.AssetModel> AssetModel { get; set; }
+
     }
 }

@@ -39,7 +39,8 @@ namespace InvenManager.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("Item")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("Owner")
                         .HasColumnType("nvarchar(max)");

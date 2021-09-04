@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InvenManager.Migrations
 {
     [DbContext(typeof(InvenManagerContext))]
-    [Migration("20210903113458_InvenDB")]
-    partial class InvenDB
+    [Migration("20210904051850_initDB")]
+    partial class initDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -41,7 +41,8 @@ namespace InvenManager.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("Item")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("Owner")
                         .HasColumnType("nvarchar(max)");

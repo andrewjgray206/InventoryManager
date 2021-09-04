@@ -10,19 +10,19 @@ namespace InvenManager.wwwroot.Models
     {
         public int ID { get; set; }
 
-        [Required]
+        //[Required]
         [MinLength(2, ErrorMessage = "Item Name needs to be at least 2 characters.")]
         [MaxLength(20, ErrorMessage ="Item Name No longer than 20 characters.")]
         public string Item { get; set; }
 
-        [Required]
+        //[Required]
         public string Category { get; set; }
 
-        [Required]
+        //[Required]
         public string SerialNo { get; set; }
 
         [DataType(DataType.Date)]
-        [Required]
+        //[Required]
         public DateTime AcquiredDate { get; set; }
 
         [DataType(DataType.Date)]
