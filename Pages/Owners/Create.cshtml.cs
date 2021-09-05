@@ -6,15 +6,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using InvenManager.Data;
-using InvenManager.wwwroot.Models;
+using InvenManager.Models;
 
-namespace InvenManager.Pages.Assets
+namespace InvenManager.Pages.Owners
 {
     public class CreateModel : PageModel
     {
-
-        public List<SelectListItem> Owners { get; set; }
-
         private readonly InvenManager.Data.InvenManagerContext _context;
 
         public CreateModel(InvenManager.Data.InvenManagerContext context)
@@ -22,18 +19,13 @@ namespace InvenManager.Pages.Assets
             _context = context;
         }
 
-        public void OnGet()
+        public IActionResult OnGet()
         {
-            Owners = _context.Owner.Select(a =>
-            new SelectListItem
-            {
-                Value = a.ID.ToString(),
-                Text = a.name
-            }).ToList();
+            return Page();
         }
 
         [BindProperty]
-        public AssetModel AssetModel { get; set; }
+        public Owner Owner { get; set; }
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
@@ -43,7 +35,7 @@ namespace InvenManager.Pages.Assets
                 return Page();
             }
 
-            _context.AssetModel.Add(AssetModel);
+            _context.Owner.Add(Owner);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using InvenManager.wwwroot.Models;
+using InvenManager.Models;
 
 namespace InvenManager.Data
 {
@@ -15,6 +16,8 @@ namespace InvenManager.Data
         }
 
         public DbSet<InvenManager.wwwroot.Models.AssetModel> AssetModel { get; set; }
+
+        public DbSet<InvenManager.Models.Owner> Owner { get; set; }
 
     }
 }
