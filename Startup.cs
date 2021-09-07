@@ -32,7 +32,7 @@ namespace InvenManager
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, DbContext context)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, InvenManagerContext context)
         {
             if (env.IsDevelopment())
             {
