@@ -28,7 +28,7 @@ namespace InvenManager.Pages.Assets
             new SelectListItem
             {
                 Value = a.ID.ToString(),
-                Text = a.name
+                Text = a.Name
             }).ToList();
         }
 

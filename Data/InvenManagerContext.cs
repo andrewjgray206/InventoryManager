@@ -19,5 +19,12 @@ namespace InvenManager.Data
 
         public DbSet<InvenManager.Models.Owner> Owner { get; set; }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder
+                .Entity<AssetModel>()
+                .ToTable("Assets", b => b.IsTemporal());
+        }
+
     }
 }

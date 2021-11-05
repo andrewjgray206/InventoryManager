@@ -7,26 +7,46 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
+#nullable disable
+
 namespace InvenManager.Migrations
 {
     [DbContext(typeof(InvenManagerContext))]
-    [Migration("20210904051850_initDB")]
-    partial class initDB
+    [Migration("20211105090609_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.8")
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("ProductVersion", "6.0.0-rc.2.21480.5")
+                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+
+            modelBuilder.Entity("InvenManager.Models.Owner", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Owner");
+                });
 
             modelBuilder.Entity("InvenManager.wwwroot.Models.AssetModel", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
 
                     b.Property<DateTime>("AcquiredDate")
                         .HasColumnType("datetime2");
@@ -44,15 +64,26 @@ namespace InvenManager.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
-                    b.Property<string>("Owner")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("OwnerID")
+                        .HasColumnType("int");
 
                     b.Property<string>("SerialNo")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
 
+                    b.HasIndex("OwnerID");
+
                     b.ToTable("AssetModel");
+                });
+
+            modelBuilder.Entity("InvenManager.wwwroot.Models.AssetModel", b =>
+                {
+                    b.HasOne("InvenManager.Models.Owner", "Owner")
+                        .WithMany()
+                        .HasForeignKey("OwnerID");
+
+                    b.Navigation("Owner");
                 });
 #pragma warning restore 612, 618
         }

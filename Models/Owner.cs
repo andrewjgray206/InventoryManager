@@ -9,7 +9,7 @@ namespace InvenManager.Models
     public class Owner
     {
         public int ID { get; set; }
-        [Required]
-        public string name { get; set; }
+        
+        public string Name { get; set; }
     }
 }
